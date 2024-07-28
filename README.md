@@ -11,7 +11,7 @@
 CellExch is a tool that first constructs an LRIs database by predicting LRIs and then performs cell-cell communication analysis based on the constructed database. Its flowchart is as follows.
 
 
-![Image text](https://github.com/xh-lab/CellExch/blob/main/CellExch_workflow_00.png)
+![Image text](https://github.com/xh-lab/CellExch/blob/master/CellExch_workflow_00.png)
 
 
 Workflow of the CellExch method. Part a includes Data Processing and Ligand-Receptor Interactions Prediction. The Data Processing part extracts the numerical features of ligand and receptor through iFeature to construct the feature matrix and reduces the dimension of the feature matrix through principal component analysis and organizes the ligand-receptor interactions into a matrix form. The Ligand-Receptor Interactions Prediction part uses these two matrices as the input of the graph attention network to learn the features of adjacent nodes, and uses the features extracted by the graph attention network as the input of the fully connected layer and performs a binary classification task. Part b includes Ligand-Receptor Interactions filtering and Cell-cell communication strength measurement. The Ligand-Receptor Interactions filtering part filters the LRIs identified by CellExch based on scRNA-seq data (i.e., if the ligand or receptor in a ligand receptor pair is not expressed in a certain cell, it is considered that the ligand receptor interaction will not mediate the corresponding cell-cell communication). The Cell-cell communication strength measurement part combines the scRNA-seq data with the filtered LRIs to calculate the cell result and product result, and the normalized average of the two results is used as the cell-cell communication strength. Part c includes Cell-cell communication visualization, which visualizes the results obtained in part b.
@@ -51,22 +51,22 @@ To reproduce our results:
 ## Data Description
 | **File name** | **Description** |
 | :---: | :--- |
-| LRI.csv | The LR pairs identified by CellMsg. | 
+| LRI.csv | The LR pairs identified by CellExch. | 
 | mart_export.txt | Mapping files of protein identifiers to gene names. |
 | ligand_sequence.txt and receptor_sequence.txt | ligand and receptor sequence files, they serve as input files for iFeature to generate corresponding ligand or receptor features. |
 | ligand_res_fea.csv and receptor_res_fea.csv (stored in google drive) | ligand feature and receptor feature files obtained after processing with iFeature. | 
 | ligand-receptor-interaction.csv | This file contains information about ligand-receptor interactions that we collected. |
 | final_model.pth (stored in google drive) | The final model for predicting LRIs. |
-| LRI_predicted.csv | LRIs that predicted by CellMsg. |
+| LRI_predicted.csv | LRIs that predicted by CellExch. |
 | original_LRI.csv | LRIs that we collected. |
 
 ## 1, acquiring feature file from sequence file using iFeature
 **Notes**: Since the processing steps for all sequence files are identical, we will proceed to process one of the sequence files.
 ```
-python iFeature.py --file CellMsg/dataset1/ligand_sequence.txt --type AAC --out ligand_aac.csv
-python iFeature.py --file CellMsg/dataset1/ligand_sequence.txt --type CKSAAP --out ligand_cksaap.csv
-python iFeature.py --file CellMsg/dataset1/ligand_sequence.txt --type CTriad --out ligand_ctriad.csv
-python iFeature.py --file CellMsg/dataset1/ligand_sequence.txt --type PAAC --out ligand_paac.csv
+python iFeature.py --file dataset1/ligand_sequence.txt --type AAC --out ligand_aac.csv
+python iFeature.py --file dataset1/ligand_sequence.txt --type CKSAAP --out ligand_cksaap.csv
+python iFeature.py --file dataset1/ligand_sequence.txt --type CTriad --out ligand_ctriad.csv
+python iFeature.py --file dataset1/ligand_sequence.txt --type PAAC --out ligand_paac.csv
 Then, the four features were merged to generate the final feature file for all ligands, where each row represents the features of one ligand, with the number of rows equating to the number of ligands.
 ```
 
