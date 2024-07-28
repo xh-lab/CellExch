@@ -109,7 +109,8 @@ All authors were involved in the conceptualization of the CellExch method. BYJ a
 
 # cite
 <p align="center">
-  <a href="https://clustrmaps.com/site/1c0ne" title="Visit tracker"><img src="//www.clustrmaps.com/map_v2.png?d=Uf341eT4GWYarTxGkL949w2hBYAIbAVB9oHe0UjCFC8&cl=ffffff"></a>
+  <a href="https://clustrmaps.com/site/1c0ne">
+    <img width="200" src="https://www.clustrmaps.com/map_v2.png?d=Uf341eT4GWYarTxGkL949w2hBYAIbAVB9oHe0UjCFC8&cl=ffffff"></a>
 </p>
 
 <p align="center">
